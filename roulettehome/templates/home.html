@@ -1,0 +1,39 @@
+
+{% extends 'roulette.html'%}
+
+{% block contents %}
+
+
+<form class="container-flouid" name="category" action="" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+    <h3>카테고리</h3>
+    <div>
+    <label><strong>종류</strong></label>
+    <label class="checkbox">
+        <input type='checkbox' name='menu' value='koreanFood'/>한식
+    </label>
+    <label class="checkbox">
+        <input type='checkbox' name='menu' value='westernFood' checked/>양식
+    </label>
+    <label class="checkbox">
+        <input type='checkbox' name='menu' value='japaneseFood'/>일식
+    </label>
+    <label class="checkbox">
+        <input type='checkbox' name='menu' value='chineseFood'/>중식
+    </label>
+    <label class="checkbox">
+        <input type='checkbox' name='menu' value='etcFood'/>기타
+    </label>
+    <br>
+    </div>
+    <button type="submit" class="btn btn-dark">Submit</button>
+    </div>
+</form>
+
+<div>
+    <h3>룰렛</h3>
+    <p>{{ food }}</p>
+</div>
+
+{% endblock%}

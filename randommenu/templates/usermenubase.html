@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+          
+</head>
+<body>
+    {% load static %}
+    <style>
+    .btn-like{
+        display: inline-block;
+        width: 60px;
+        height: 50px;
+        background:url('../../../static/images/likeimg.png');
+        background-position: -60px 0px;
+        text-indent: -9999px;
+        overflow:hidden;
+        border:none;
+    }
+    .btn-like.active{
+
+        display: inline-block;
+        width: 60px;
+        height: 50px;
+        background:url('../../../static/images/likeimg.png');
+        background-position: 0px 0px;
+        text-indent: -9999px;
+        overflow:hidden;
+        border:none;
+    }
+     .btn-favorite{
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        background:url('../../../static/images/likeimg.png');
+        background-position: -120px 0px;
+        text-indent: -9999px;
+        overflow:hidden;
+        border:none;
+    }
+    .btn-favorite.active{
+    display: inline-block;
+        width: 50px;
+        height: 50px;
+        background:url('../../../static/images/likeimg.png');
+        background-position: -170px 0px;
+        text-indent: -9999px;
+        overflow:hidden;
+        border:none;
+    }
+    </style>
+
+
+<body class="text-center">
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white">
+        <h5 class="my-0 mr-md-auto font-weight-normal"></h5>
+        <nav class="my-2 my-md-0 mr-md-3">
+            {% if user.is_active %}
+            <a class="p-2 text-black-50" href="{% url 'usermenu:mylist' %}"> 내가 올린글 확인 </a>
+            <a class="p-2 text-black-50" href="{% url 'password_change' %}"> 비밀번호 변경</a>
+            <a class="btn btn-info text-warning" href="{% url 'logout' %}">Logout</a>
+            {% else %}
+            <a class="p-2 text-black-50" href="{% url 'register' %}">회원가입</a>
+            <a class="btn btn-info text-warning" href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </nav>
+    </div>
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column ">
+  <header class="masthead mb-auto">
+    <div class="inner">
+      <a href="{% url 'roulettehome:home'%}"><img src="https://postfiles.pstatic.net/MjAxOTA3MTdfMjE5/MDAxNTYzMzU2NDU5Mzcx.uDatFUkjG620AzjF9scBLBiS9XxHJcIWQMM2LPF8riAg.kFGhQlg3fCgt43wHjM4Dc785ZfUSoiaZugffMZaZ_lAg.PNG.jw980504/%EB%A1%9C%EA%B3%A0.png?type=w773" width="500" height="200"></a>
+      <nav class="nav nav-masthead justify-content-center bg-info">
+          <a class="nav-link text-warning active" href="{% url 'roulettehome:home'%}">룰렛</a>
+          <a class="nav-link text-warning " href="{% url 'goodmenu:album_list'%}">지니 맛집</a>
+          <a class="nav-link text-warning" href="{% url 'usermenu:index'%}">알라딘 맛집</a>
+      {% if user.is_active %}
+      <a class="nav-link text-warning" href="{% url 'usermenu:like_list' %}"> 좋아요한 알라딘사진보기 </a>
+      <a class="nav-link text-warning" href="{% url 'usermenu:favorite_list' %}"> 저장한 알라딘사진보기 </a>
+       {% else %}
+       {% endif %} 
+      </nav>
+      {% if user.is_active %}
+      <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white">
+            <h5 class="my-0 mr-md-auto font-weight-normal"></h5>
+            <nav class="my-2 my-md-0 mr-md-3">
+                <a class="btn btn-info text-warning" href="{% url 'usermenu:create' %}">사진 올리기</a>
+            </nav>
+        </div>
+      {% endif %} 
+    </div>
+  </header>
+</div>
+</body>
+
+        <div class='container'>
+                {% if messages %}
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col-6">
+                        {% for message in messages %}
+                        <div class="alert alert-{{message.tag}}">{{message}}</div>
+                        {% endfor %}
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+                {% endif %}
+    
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    </body>
+    
+
+    </html>
+
+    
+    {%block contents%}
+
+
+    {%endblock%}
+
+
+      
+   <!--관리자 대화-->
+
+   <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/5d1c7bdf7a48df6da242b996/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+  
+    <!--End of Tawk.to Script-->

@@ -1,0 +1,52 @@
+
+{% extends 'goodmenubase.html' %}
+
+
+{% block title %}album_detail.html{% endblock %}
+{% load staticfiles %}
+{% block contents %}
+
+    
+
+<div id="content">
+    
+        <div class="album-detail">
+            {% for goodmenu in object.goodmenu_set.all %}
+            
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                  <a href="{{ goodmenu.get_absolute_url }}"><img class ="thumbnail" src="{{goodmenu.smallimg.thumb_url }}"></a>
+                  <div class="card-body">
+                    <p class="card-text">겉에는 간단한 내용 조회수, 좋아요 수 보여주기 </p>
+                    <p class="card-text">{{goodmenu.smallbody}}</p>
+                    <ul class="list-group list-group-flush">
+                      <li>
+                             
+                        <a href="{% url 'goodmenu:like' goodmenu.id %}" class="float-left btn-like {%if user in goodmenu.like.all %} active {%endif%}">좋아요!</a>
+                        {% if goodmenu.like.all.count %}
+                        <span class = "float-left">
+                            {{goodmenu.like.all.count}}
+                        </span>
+                        {% endif %}
+                        <a href="{% url 'goodmenu:favorite' goodmenu.id %}" class="float-right btn-favorite {%if user in goodmenu.favorite.all %}active{%endif%}">저장하기!</a>
+                         
+                      </li>
+                      <li class="list-group-item">생성일 : {{ goodmenu.date }}</li>
+                      <li class="list-group-item">조회수 : {{ goodmenu.hit }}</li>
+                  </ul>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                      </div>
+                    </div>
+                  </div>
+                </div>        
+              </div>
+            
+            {% endfor %}
+        </div>
+    
+    </div>
+ 
+{% endblock%}
+
+

@@ -1,0 +1,81 @@
+
+{% extends 'goodmenubase.html' %}
+
+
+{% block title %}goodmenu_detail.html{% endblock %}
+{% load staticfiles %}
+
+
+{% block contents %}
+
+<h1>자세히 보기 페이지 입니다.</h1>
+
+<h1>body 내용 : {{object.body}}</h1>
+<h1>디테일 이미지 : <img src="{{ object.detailimg.url }}"></h1>
+<h1>지도 : <img src="{{ object.location.url }}"></h1>
+<h1>url : <a href="{{object.url}}">{{object.url}}</a></h1>
+<h1>계시일 : {{object.data}}</h1>
+<h1>오픈시간 : {{object.open_time}}</h1> ~
+<h1>마감시간 : {{object.close_time}}</h1>
+{{goodmenu.update_counter}}
+<h1>조회수 : {{object.hit}}</h1>
+<h1>좋아요 : {{object.like.all.count}}</h1>
+<h1><img src="{{ object.goodstar.img.url }}"></h1>
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>간단한 지도 표시하기</title>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ell8frxmkb"></script>
+</head>
+<body>
+<div id="map" style="width:50%;height:300px;"></div>
+
+<script>
+var mapOptions = {
+    
+    center: new naver.maps.LatLng(37.3595704, 127.105399),
+    zoom: 12
+};
+
+var map = new naver.maps.Map('map', mapOptions);
+</script>
+</body>
+
+
+
+
+
+<!--댓글-->
+<div id="disqus_thread"></div>
+<script>
+
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://commet-test.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+{% endblock%}
+
+

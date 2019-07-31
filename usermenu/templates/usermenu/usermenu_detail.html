@@ -1,0 +1,70 @@
+
+{% extends 'usermenubase.html' %}
+
+{% block contents %}
+
+    <div class="col"></div>
+    <div class="col-12 col-xl-4 col-md-4">
+        <div class="card" style="">
+            <img src=" {{ object.detailimg.url }}" class="card-img-top" >
+            
+            <div class="card-body">
+
+                <h5 class="card-title">{{ object.userauthor }}</h5>
+                <h5 class="card-title">{{ object.userarea }}</h5>
+                <p class="card-text"> {{ object.body }} </p>
+            </div>
+            <ul class="list-group list-group-flush">
+                
+                    <li class="list-group-item">
+                            <a href="{% url 'usermenu:like' object.id %}" class="float-left btn-like {%if user in object.like.all %} active {%endif%}">좋아요!</a>
+                            {% if object.like.all.count %}
+                            <span class = "float-left">
+                                {{object.like.all.count}}
+                            </span>
+                            {% endif %}
+                            <a href="{% url 'usermenu:favorite' object.id %}" class="float-right btn-favorite {%if user in object.favorite.all %} active {%endif%}">저장하기!</a>
+                        </li>
+                <li class="list-group-item">생성일 : {{ object.date }}</li>
+                {{usermenu.update_counter}}
+                <li class="list-group-item">조회수 : {{ usermenu.hit }}</li>
+                <img src=" {{ object.userstar.img.url }}" class="card-img-top" >
+            </ul>
+            <div class="card-body">
+                <a href="{% url 'usermenu:update' object.id %}" class="card-link">수정하기</a>
+                <a href="{% url 'usermenu:delete' object.id %}" class="card-link">삭제하기</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!--댓글-->
+    <div class="col"></div>
+    <div id="disqus_thread"></div>
+    <script>
+    
+
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://commet-test.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+   
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+{% endblock%}

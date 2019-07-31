@@ -1,0 +1,39 @@
+{% extends 'logobase.html' %}
+{% load staticfiles %}
+
+{% block contents %}
+
+<div class="row">
+    <div class="col"></div>
+    <div class="'col-6">
+        <div class="alert alert-info text-info" role="alert">
+            Please enter your login information. </div>
+            <form action="." method="post">{% csrf_token %}
+                {% if form.errors %}
+                            <p class="errornote">아이디 또는 비밀번호를 다시 확인하세요.<br>
+                            등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다.</p>
+                            {% endif %}
+                            <fieldset class="aligned">
+                
+                                <div class="form-row" placeholder="Id">
+                                    <p class="text-info">아이디</p> {{ form.username }}
+                                </div>
+                            
+                                <div class="form-row">
+                                    <p class="text-info">비밀번호</p> {{ form.password }}
+                                </div>
+                        
+                            </fieldset>
+                            <div class="submit-row"></div>
+                            <input class="btn btn-info text-warning" type="submit" value ="Login"/>
+                            <input type="hidden" name="next" value="{{ next }} " />
+                
+                            <script type="text/javascript">documnet.getElemenById('id_username').focus();</script>
+                
+                
+                        </form>
+    </div>
+    <div class="col"></div>
+
+</div>
+{% endblock %}
