@@ -58,20 +58,31 @@
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white">
         <h5 class="my-0 mr-md-auto font-weight-normal"></h5>
         <nav class="my-2 my-md-0 mr-md-3">
-            {% if user.is_active %}
-            <a class="p-2 text-black-50" href="{% url 'usermenu:mylist' %}"> 내가 올린글 확인 </a>
-            <a class="p-2 text-black-50" href="{% url 'password_change' %}"> 비밀번호 변경</a>
-            <a class="btn btn-info text-warning" href="{% url 'logout' %}">Logout</a>
-            {% else %}
-            <a class="p-2 text-black-50" href="{% url 'register' %}">회원가입</a>
-            <a class="btn btn-info text-warning" href="{% url 'login' %}">Login</a>
-            {% endif %}
+               {% if user.is_active %}
+                  <div class="btn-group">
+                  <header class="masthead mb-auto">
+                     <a class="btn btn-info text-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                     </a>
+                     <div class="dropdown-menu">
+                     <a class="dropdown-item" href="{% url 'usermenu:mylist' %}">내가 올린 글</a>
+                     <a class="dropdown-item" href="#">좋아요</a>
+                     <a class="dropdown-item" href="#">저장</a>
+                     <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'password_change' %}">비밀번호 변경</a>
+                     </div>
+                     <a class="btn btn-info text-warning" href="{% url 'logout' %}">Logout</a>
+                     
+                  {% else %}
+                  <a class="p-2 text-black-50" href="{% url 'register' %}">회원가입</a>
+                  <a class="btn btn-info text-warning" href="{% url 'login' %}">Login</a>
+                  {% endif %}
         </nav>
     </div>
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column ">
   <header class="masthead mb-auto">
     <div class="inner">
-      <a href="{% url 'roulettehome:home'%}"><img src="https://postfiles.pstatic.net/MjAxOTA3MTdfMjE5/MDAxNTYzMzU2NDU5Mzcx.uDatFUkjG620AzjF9scBLBiS9XxHJcIWQMM2LPF8riAg.kFGhQlg3fCgt43wHjM4Dc785ZfUSoiaZugffMZaZ_lAg.PNG.jw980504/%EB%A1%9C%EA%B3%A0.png?type=w773" width="500" height="200"></a>
+      <a href="{% url 'roulettehome:home'%}"><img src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/67509336_2325225531031879_8796882694895042560_n.jpg?_nc_cat=100&_nc_oc=AQn-px7v0NVCuS9LYZJkGiALhvyzIYnEot0iRlrC5gMK5N5c0WeQBAi6ChnPlZGdaWM&_nc_ht=scontent-icn1-1.xx&oh=abed837003f78e4c8ce4efed1acc7ab6&oe=5DEDD8DE" width="500" height="200"></a>
       <nav class="nav nav-masthead justify-content-center bg-info">
           <a class="nav-link text-warning active" href="{% url 'roulettehome:home'%}">룰렛</a>
           <a class="nav-link text-warning " href="{% url 'goodmenu:album_list'%}">지니 맛집</a>
